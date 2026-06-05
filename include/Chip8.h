@@ -10,7 +10,7 @@ private:
   uint8_t registers[NUM_REGISTERS]{};
   uint8_t memory[MEMORY_SIZE]{};
   uint16_t index{};
-  uint16_t pc{};
+  uint16_t pc{}; // holds 2 bytes, must index into memory
   std::stack<uint16_t> stack;
   uint8_t delayTimer{};
   uint8_t soundTimer{};
