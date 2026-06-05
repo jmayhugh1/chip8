@@ -3,7 +3,8 @@
 #include <cstdint>
 
 Chip8::Chip8()
-    : randGen(std::chrono::system_clock::now().time_since_epoch().count()) {
+    : pc(ROM_START_ADDRESS),
+      randGen(std::chrono::system_clock::now().time_since_epoch().count()) {
   pc = ROM_START_ADDRESS;
 
   randByte = std::uniform_int_distribution<uint8_t>(0, 255U);
@@ -31,17 +32,17 @@ void Chip8::call(uint16_t addr) {
 }
 
 void Chip8::se_const(uint8_t vx, uint8_t kk) {
-  if ((CONVERT_8TO4BITS(vx)) == kk)
+  if (registers[CONVERT_8TO4BITS(vx)] == kk)
     pc += 2;
 }
 
 void Chip8::sne_const(uint8_t vx, uint8_t kk) {
-  if ((CONVERT_8TO4BITS(vx)) != kk)
+  if (registers[CONVERT_8TO4BITS(vx)] != kk)
     pc += 2;
 }
 
 void Chip8::se_reg(uint8_t vx, uint8_t vy) {
-  if ((CONVERT_8TO4BITS(vx)) == (CONVERT_8TO4BITS(vy)))
+  if (registers[CONVERT_8TO4BITS(vx)] == registers[CONVERT_8TO4BITS(vy)])
     pc += 2;
 }
 
