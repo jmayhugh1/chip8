@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 static const unsigned int FONTSET_SIZE = 80;
 
