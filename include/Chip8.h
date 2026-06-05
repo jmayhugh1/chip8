@@ -5,8 +5,10 @@
 #include <cstring>
 #include <random>
 #include <stack>
+
 class Chip8 {
 private:
+  friend class Chip8FuncTests;
   uint8_t registers[NUM_REGISTERS]{};
   uint8_t memory[MEMORY_SIZE]{};
   uint16_t index{};
